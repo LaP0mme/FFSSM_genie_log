@@ -25,6 +25,10 @@ public class Plongeur extends Personne {
         return this.listeLicence;
     }
 
+    public Licence derniereLicence(){
+        listeLicence.sort((o1, o2) -> o1.delivrance.compareTo(o2.delivrance));
+        return this.listeLicence.get(this.listeLicence.size()-1);
+    }
     
 
 }
