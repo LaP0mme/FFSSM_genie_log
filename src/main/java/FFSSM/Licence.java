@@ -2,8 +2,9 @@
  * @(#) LicencePlongeur.java
  */
 package FFSSM;
-
-import java.time.LocalDate;
+import java.util.*;
+import java.time.*;
+import java.time.temporal.*;
 
 public class Licence {
 
@@ -45,8 +46,12 @@ public class Licence {
      * @return vrai si valide à la date d
      **/
     public boolean estValide(LocalDate d) {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+         boolean flag = true;
+         long diff;
+         if(diff = ChronoUnit.DAYS.between(delivrance, d)>365){
+            flag = false;
+         }
+         return flag;
     }
 
 }
