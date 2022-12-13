@@ -34,10 +34,14 @@ public class Plongee {
 		this.listeP = new ArrayList<Plongeur>();
 	}
 
-	public void setOrganisateur(Club C){
+	public void setOrganisateur(Club C) {
 		this.organisateur.listePlongee.remove(this);
 		this.organisateur = C;
 		this.organisateur.listePlongee.add(this);
+	}
+
+	public Club getOrganisateur() {
+		return this.organisateur;
 	}
 
 	public void ajouteParticipant(Plongeur participant) {
@@ -49,21 +53,21 @@ public class Plongee {
 	}
 
 	/**
-	 * Détermine si la plongée est conforme. 
+	 * Détermine si la plongée est conforme.
 	 * Une plongée est conforme si tous les plongeurs de la palanquée ont une
 	 * licence valide à la date de la plongée
+	 * 
 	 * @return vrai si la plongée est conforme
 	 */
 	public boolean estConforme() {
 		boolean flag = true;
-		for(int i = 0; i < listeP.size() -1; i++){
-			for(int t = 0; t < listeP.get(i).listeLicence.size()-1; t++){
-			if(!(listeP.get(i).listeLicence.get(i).estValide(date)) || !(listeP.get(i).listeLicence.get(i).club == this.organisateur)){
+		for (int i = 0; i < listeP.size(); i++) {
+			for(int t = 0; t < listeP.size() ; t++){
+			if (!(listeP.get(i).listeLicence.get(t).estValide(this.date)))
 				flag = false;
-			}
 
-			}
 		}
+	}
 		return flag;
 	}
 
