@@ -34,6 +34,12 @@ public class Plongee {
 		this.listeP = new ArrayList<Plongeur>();
 	}
 
+	public void setOrganisateur(Club C){
+		this.organisateur.listePlongee.remove(this);
+		this.organisateur = C;
+		this.organisateur.listePlongee.add(this);
+	}
+
 	public void ajouteParticipant(Plongeur participant) {
 		this.listeP.add(participant);
 	}

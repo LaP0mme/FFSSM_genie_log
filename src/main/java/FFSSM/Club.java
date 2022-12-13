@@ -4,11 +4,10 @@
 package FFSSM;
 
 import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Club {
 
- 
     public Moniteur president;
 
     public String nom;
@@ -17,34 +16,45 @@ public class Club {
 
     public String telephone;
 
+    public HashSet<Plongee> listePlongee;
+
     public Club(Moniteur président, String nom, String telephone, String adresse) {
         this.president = président;
         this.nom = nom;
         this.telephone = telephone;
         this.adresse = adresse;
+        this.listePlongee = new HashSet<Plongee>();
     }
 
     /**
      * Calcule l'ensemble des plongées non conformes organisées par ce club.
-     * Une plongée est conforme si tous les plongeurs de la palanquée ont une licence
+     * Une plongée est conforme si tous les plongeurs de la palanquée ont une
+     * licence
      * valide à la date de la plongée
+     * 
      * @return l'ensemble des plongées non conformes
      */
     public Set<Plongee> plongeesNonConformes() {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        HashSet<Plongee> p = new HashSet<Plongee>();
+        for (Plongee palanque : this.listePlongee) {
+            if (palanque.estConforme() == false) {
+                p.add(palanque);
+            }
+        }
+        return p;
+
     }
 
     /**
      * Enregistre une nouvelle plongée organisée par ce club
+     * 
      * @param p la nouvelle plongée
      */
     public void organisePlongee(Plongee p) {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        this.listePlongee.add(p);
+        p.setOrganisateur(this);
     }
-    
-    
+
     public Moniteur getPresident() {
         return president;
     }
@@ -79,7 +89,8 @@ public class Club {
 
     @Override
     public String toString() {
-        return "Club{" + "président=" + president + ", nom=" + nom + ", adresse=" + adresse + ", telephone=" + telephone + '}';
+        return "Club{" + "président=" + president + ", nom=" + nom + ", adresse=" + adresse + ", telephone=" + telephone
+                + '}';
     }
 
 }
