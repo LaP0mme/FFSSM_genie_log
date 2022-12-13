@@ -4,6 +4,7 @@
 package FFSSM;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,17 +20,22 @@ public class Plongee {
 
 	public int duree;
 
-	public Plongee(Site lieu, Moniteur chefDePalanquee, LocalDate date, int profondeur, int duree) {
+	public ArrayList<Plongeur> listeP;
+
+	public Club organisateur;
+
+	public Plongee(Site lieu, Moniteur chefDePalanquee, LocalDate date, int profondeur, int duree, Club organisateur) {
 		this.lieu = lieu;
 		this.chefDePalanquee = chefDePalanquee;
 		this.date = date;
 		this.profondeur = profondeur;
 		this.duree = duree;
+		this.organisateur = organisateur;
+		this.listeP = new ArrayList<Plongeur>();
 	}
 
 	public void ajouteParticipant(Plongeur participant) {
-		// TODO: Implémenter cette méthode
-		throw new UnsupportedOperationException("Pas encore implémenté");
+		this.listeP.add(participant);
 	}
 
 	public LocalDate getDate() {
@@ -43,8 +49,16 @@ public class Plongee {
 	 * @return vrai si la plongée est conforme
 	 */
 	public boolean estConforme() {
-		// TODO: Implémenter cette méthode
-		throw new UnsupportedOperationException("Pas encore implémenté");
+		boolean flag = true;
+		for(int i = 0; i < listeP.size() -1; i++){
+			for(int t = 0; t < listeP.get(i).listeLicence.size()-1; t++){
+			if(!(listeP.get(i).listeLicence.get(i).estValide(date)) || !(listeP.get(i).listeLicence.get(i).club == this.organisateur)){
+				flag = false;
+			}
+
+			}
+		}
+		return flag;
 	}
 
 }

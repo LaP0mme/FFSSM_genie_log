@@ -47,8 +47,8 @@ public class Licence {
      **/
     public boolean estValide(LocalDate d) {
          boolean flag = true;
-         long diff;
-         if(diff = ChronoUnit.DAYS.between(delivrance, d)>365){
+         long diff = ChronoUnit.DAYS.between(delivrance, d);
+         if(diff > 365){
             flag = false;
          }
          return flag;

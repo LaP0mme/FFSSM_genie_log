@@ -11,8 +11,8 @@ public class Moniteur extends Plongeur {
 
     public int numeroDiplome;
 
-    public Moniteur(String numeroINSEE, String nom, String prenom, String adresse, String telephone, LocalDate naissance, int numeroDiplome) {
-        super(numeroINSEE, nom, prenom, adresse, telephone, naissance);
+    public Moniteur(String numeroINSEE, String nom, String prenom, String adresse, String telephone, LocalDate naissance,int niveau, GroupeSanguin gs, int numeroDiplome) {
+        super(numeroINSEE, nom, prenom, adresse, telephone, naissance, niveau, gs);
         this.numeroDiplome = numeroDiplome;
     }
 
